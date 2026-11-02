@@ -8,6 +8,7 @@ image:
 
 ghostUsername: admin
 ghostEmail: you@example.com
+ghostHost: a87a29512c04b4389a25b09a53f28b11-514369298.us-east-2.elb.amazonaws.com
 existingSecret: ghost-secrets
 
 service:
