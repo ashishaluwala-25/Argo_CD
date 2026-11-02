@@ -1,0 +1,36 @@
+global:
+  storageClass: ebs-gp3
+  security:
+    allowInsecureImages: true
+
+config:
+  secret:
+    createSecret: true
+
+image:
+  repository: bitnamilegacy/argo-cd
+
+dex:
+  image:
+    repository: bitnamilegacy/dex
+
+server:
+  service:
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: true
+  image:
+    repository: bitnamilegacy/redis
+  master:
+    persistence:
+      enabled: true
+      storageClass: ebs-gp3
+      accessModes:
+        - ReadWriteOnce
+      size: 10Gi

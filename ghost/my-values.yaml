@@ -1,0 +1,35 @@
+global:
+  storageClass: ebs-gp3
+  security:
+    allowInsecureImages: true
+
+image:
+  repository: bitnamilegacy/ghost
+
+ghostUsername: admin
+ghostEmail: you@example.com
+existingSecret: ghost-secrets
+
+service:
+  type: LoadBalancer
+
+persistence:
+  enabled: true
+  existingClaim: ghost-uploads-pvc
+
+volumePermissions:
+  enabled: true
+  image:
+    repository: bitnamilegacy/os-shell
+
+mysql:
+  enabled: true
+  image:
+    repository: bitnamilegacy/mysql
+  auth:
+    existingSecret: ghost-secrets
+  primary:
+    persistence:
+      enabled: true
+      storageClass: ebs-gp3
+      size: 8Gi
